@@ -4,7 +4,7 @@
 <head>
     <script src="js\aframe.min.js"></script>
     <script src="js\zappar-aframe\zappar-aframe.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="js\aframe-extras.min.js"></script>
 
     <meta charset="utf-8" />
     <title>Zappar for A-Frame: Face Tracking Masks</title>
@@ -63,6 +63,10 @@
             background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
         }
 
+        .btn-mask4 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
         .btn.active {
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
             border: 2px solid white;
@@ -117,6 +121,7 @@
         <button class="btn btn-mask1 active" onclick="switchMask(1)"> Маска 1</button>
         <button class="btn btn-mask2" onclick="switchMask(2)"> Маска 2</button>
         <button class="btn btn-mask3" onclick="switchMask(3)"> Маска 3</button>
+        <button class="btn btn-mask3" onclick="switchMask(4)"> Маска 4</button>
     </div>
 
     <a-scene>
@@ -156,6 +161,14 @@
                 rotation="0 0 0"
                 visible="false">
             </a-entity>
+             <a-entity 
+                id="mask4"
+                gltf-model="url(maskCat.glb)" 
+                position="0 0 0.5" 
+                scale="0.24 0.24 0.24" 
+                rotation="0 -90 -25"
+                visible="false">
+            </a-entity>
 
         </a-entity>
     </a-scene>
@@ -167,11 +180,13 @@
             const mask1 = document.getElementById('mask1');
             const mask2 = document.getElementById('mask2');
             const mask3 = document.getElementById('mask3');
+            const mask4 = document.getElementById('mask4');
 
             // Скрываем все маски
             mask1.setAttribute('visible', 'false');
             mask2.setAttribute('visible', 'false');
             mask3.setAttribute('visible', 'false');
+            mask4.setAttribute('visible', 'false');
 
             // Показываем выбранную маску
             if (maskNumber === 1) {
@@ -184,6 +199,8 @@
                 mask2.setAttribute('visible', 'true');
             } else if (maskNumber === 3) {
                 mask3.setAttribute('visible', 'true');
+            } else if (maskNumber === 4) {
+                mask4.setAttribute('visible', 'true');
             }
 
             // Обновляем активную кнопку
@@ -202,10 +219,12 @@
             const mask1 = document.getElementById('mask1');
             const mask2 = document.getElementById('mask2');
             const mask3 = document.getElementById('mask3');
+            const mask4 = document.getElementById('mask4');
             
             if (mask1) mask1.setAttribute('visible', 'true');
             if (mask2) mask2.setAttribute('visible', 'false');
             if (mask3) mask3.setAttribute('visible', 'false');
+            if (mask4) mask4.setAttribute('visible', 'false');
         });
 
         // Обработка клавиш на клавиатуре для удобства
@@ -216,11 +235,13 @@
                 switchMask(2);
             } else if (event.key === '3') {
                 switchMask(3);
+            } else if (event.key === '4') {
+                switchMask(4);
             }
         });
 
         // Логирование для отладки
-        console.log('Маски загружены! Используйте кнопки или клавиши 1, 2, 3 для переключения.');
+        console.log('Маски загружены! Используйте кнопки или клавиши 1, 2, 3, 4 для переключения.');
     </script>
 </body>
 
